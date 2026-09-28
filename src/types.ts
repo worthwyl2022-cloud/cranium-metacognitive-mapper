@@ -1,0 +1,3 @@
+export type Observation = { id:string; createdAt:string; source:'conversation'|'journal'|'observation'; text:string; tags:string[]; thought?:string; emotion?:string; decision?:string; trigger?:string; outcome?:string; confidence:number; status:'candidate'|'confirmed'|'rejected'; };
+export type Pattern = { id:string; label:string; description:string; evidenceIds:string[]; confidence:number; category:'decision'|'emotion'|'attention'|'behavior'|'information'|'relationship'; status:'hypothesis'|'user_confirmed'|'user_rejected'; };
+export type ChatMessage = { role:'user'|'assistant'; content:string; observationId?:string; };

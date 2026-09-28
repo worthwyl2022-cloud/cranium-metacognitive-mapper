@@ -1,265 +1,29 @@
-import { useState, useMemo } from 'react';
-import { 
-  Play, Brain, BookOpen, Cpu, FileText, Sparkles, 
-  ShieldCheck, RefreshCw, Zap, Compass, Download, 
-  ExternalLink, Server
-} from 'lucide-react';
-import { CognitiveAtom, Directive, Metrics } from './types/creativeOs';
-import { ResonanceField } from './worthwyl/core/field';
-import AcquisitionVideoDemo from './worthwyl/demo/AcquisitionVideoDemo';
-import MetacognitiveView from './worthwyl/metacognition/MetacognitiveView';
-import CreatorStudioView from './worthwyl/studio/CreatorStudioView';
-import ResonanceFieldView from './worthwyl/physics/ResonanceFieldView';
-import DiligenceDataRoom from './worthwyl/diligence/DiligenceDataRoom';
-import GlobalAiBar from './worthwyl/common/GlobalAiBar';
+import { useMemo, useState } from 'react';
+import { Brain, ChevronRight, CircleHelp, Eye, GitBranch, MessageCircle, Plus, ShieldCheck, Sparkles, X } from 'lucide-react';
+import type { ChatMessage, Observation, Pattern } from './types';
+import { derivePatterns, extractObservation } from './mapping';
+import { loadObservations, loadPatterns, saveObservations, savePatterns } from './store';
 
-export type ActiveView = 'demo' | 'metacognition' | 'studio' | 'physics' | 'diligence';
+export type ActiveView = 'chat' | 'map' | 'tracker' | 'studio' | 'metacognition' | 'diligence' | 'architecture' | 'canon' | 'benchmark' | 'memory' | 'settings';
 
-export default function App() {
-  const [activeView, setActiveView] = useState<ActiveView>(() => {
-    const requestedView = window.location.hash.replace('#', '') as ActiveView;
-    return ['demo', 'metacognition', 'studio', 'physics', 'diligence'].includes(requestedView)
-      ? requestedView
-      : 'demo';
-  });
+const intro=`Convertible Cranium Operator OS helps you observe how your own cognition appears to work over time. You can journal, talk through decisions, examine reactions, and voluntarily let Cranium ask questions while you research or reflect. The Mapper builds hypotheses from your observations. It does not define who you are, and its psychological material is educational rather than a clinical diagnosis.`;
 
-  const navigateToView = (view: ActiveView) => {
-    setActiveView(view);
-    window.history.replaceState(null, '', `#${view}`);
-  };
-
-  // Shared Resonance Field Substrate
-  const field = useMemo(() => {
-    const rf = new ResonanceField();
-    // Seed core thematic & narrative atoms
-    rf.inject({
-      id: 'atom-canon-1',
-      charge: 0.5,
-      mass: 8.5,
-      velocity: 0.35,
-      kind: 'theme',
-      tags: ['sovereignty', 'human_intentionality'],
-      label: 'Foundational Sovereign Intent'
-    });
-    rf.inject({
-      id: 'atom-canon-2',
-      charge: -0.3,
-      mass: 7.0,
-      velocity: 0.5,
-      kind: 'episodic',
-      tags: ['isolation', 'discovery'],
-      label: 'Deep Relay Silence'
-    });
-    rf.inject({
-      id: 'atom-canon-3',
-      charge: 0.65,
-      mass: 6.5,
-      velocity: 0.6,
-      kind: 'episodic',
-      tags: ['discovery', 'resonance'],
-      label: 'Harmonic Awakening'
-    });
-    return rf;
-  }, []);
-
-  const [metrics, setMetrics] = useState<Metrics>(() => field.metrics());
-  const [activeDirective, setActiveDirective] = useState<Directive>(Directive.ADVANCE);
-
-  const handleAtomInjected = (atom: CognitiveAtom) => {
-    field.inject(atom);
-    const updated = field.metrics();
-    setMetrics(updated);
-  };
-
-  const handleAtomRemoved = (id: string) => {
-    field.remove(id);
-    const updated = field.metrics();
-    setMetrics(updated);
-  };
-
-  const handleResetField = () => {
-    field.clear();
-    field.inject({
-      id: 'atom-init',
-      charge: 0.4,
-      mass: 6.0,
-      velocity: 0.4,
-      kind: 'theme',
-      tags: ['creation', 'grounding'],
-      label: 'Grounding Canon Axiom'
-    });
-    setMetrics(field.metrics());
-  };
-
-  return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 flex flex-col font-sans selection:bg-amber-500 selection:text-neutral-950">
-      {/* Operating System Top Bar */}
-      <header className="bg-neutral-900/95 backdrop-blur border-b border-neutral-800 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
-          {/* Brand & Substrate Pulse */}
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center font-bold text-sm text-amber-400">
-              W
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-extrabold tracking-tight text-white">
-                  WORTHWYL CREATIVE OS
-                </span>
-                <span className="px-1.5 py-0.2 rounded text-[10px] font-mono uppercase bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold">
-                  CRANIUM CORE v3
-                </span>
-              </div>
-              <div className="flex items-center gap-2 text-[10px] font-mono text-neutral-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span>SUBSTRATE ACTIVE // NON-LINEAR RESONANCE</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Core System Navigation */}
-          <nav className="flex items-center gap-1 bg-neutral-950 p-1 rounded-xl border border-neutral-800">
-            <button
-              onClick={() => navigateToView('demo')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                activeView === 'demo'
-                  ? 'bg-amber-500 text-neutral-950 font-bold shadow-md shadow-amber-500/10'
-                  : 'text-neutral-400 hover:text-white hover:bg-neutral-900'
-              }`}
-            >
-              <Play className="w-3.5 h-3.5" />
-              <span>Acquisition Demo</span>
-            </button>
-
-            <button
-              onClick={() => navigateToView('metacognition')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                activeView === 'metacognition'
-                  ? 'bg-amber-500 text-neutral-950 font-bold shadow-md shadow-amber-500/10'
-                  : 'text-neutral-400 hover:text-white hover:bg-neutral-900'
-              }`}
-            >
-              <Brain className="w-3.5 h-3.5" />
-              <span>Metacognitive Tracker</span>
-            </button>
-
-            <button
-              onClick={() => navigateToView('studio')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                activeView === 'studio'
-                  ? 'bg-amber-500 text-neutral-950 font-bold shadow-md shadow-amber-500/10'
-                  : 'text-neutral-400 hover:text-white hover:bg-neutral-900'
-              }`}
-            >
-              <BookOpen className="w-3.5 h-3.5" />
-              <span>Creator Studio</span>
-            </button>
-
-            <button
-              onClick={() => navigateToView('physics')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                activeView === 'physics'
-                  ? 'bg-amber-500 text-neutral-950 font-bold shadow-md shadow-amber-500/10'
-                  : 'text-neutral-400 hover:text-white hover:bg-neutral-900'
-              }`}
-            >
-              <Cpu className="w-3.5 h-3.5" />
-              <span>Resonance Lab</span>
-            </button>
-
-            <button
-              onClick={() => navigateToView('diligence')}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
-                activeView === 'diligence'
-                  ? 'bg-amber-500 text-neutral-950 font-bold shadow-md shadow-amber-500/10'
-                  : 'text-neutral-400 hover:text-white hover:bg-neutral-900'
-              }`}
-            >
-              <Server className="w-3.5 h-3.5" />
-              <span>Diligence Room</span>
-            </button>
-          </nav>
-
-          {/* Right Status Pill */}
-          <div className="hidden lg:flex items-center gap-3 text-xs font-mono">
-            <div className="px-2.5 py-1 rounded-lg bg-neutral-950 border border-neutral-800 flex items-center gap-2">
-              <span className="text-neutral-400">COH:</span>
-              <span className="text-emerald-400 font-bold">{(metrics.coherence * 100).toFixed(0)}%</span>
-              <span className="text-neutral-600">|</span>
-              <span className="text-neutral-400">TEN:</span>
-              <span className="text-amber-400 font-bold">{metrics.tension.toFixed(2)}</span>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Main OS View Area */}
-      <main className="max-w-7xl mx-auto px-4 py-6 pb-32 flex-1 w-full space-y-6">
-        {activeView === 'demo' && (
-          <AcquisitionVideoDemo 
-            onNavigateToModule={(mod) => setActiveView(mod === 'tracker' ? 'metacognition' : mod as ActiveView)} 
-          />
-        )}
-
-        {activeView === 'metacognition' && (
-          <MetacognitiveView onExportSummary={() => navigateToView('diligence')} />
-        )}
-
-        {activeView === 'studio' && (
-          <CreatorStudioView
-            field={field}
-            metrics={metrics}
-            onAtomInjected={handleAtomInjected}
-            onNavigateToDemo={() => navigateToView('demo')}
-          />
-        )}
-
-        {activeView === 'physics' && (
-          <ResonanceFieldView
-            field={field}
-            metrics={metrics}
-            onAtomInjected={handleAtomInjected}
-            onAtomRemoved={handleAtomRemoved}
-            onResetField={handleResetField}
-          />
-        )}
-
-        {activeView === 'diligence' && (
-          <DiligenceDataRoom />
-        )}
-      </main>
-
-      {/* OS Status Footer */}
-      <footer className="bg-neutral-900 border-t border-neutral-800 text-xs text-neutral-400 py-3.5 px-4 mb-20 md:mb-16">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-400" />
-            <span className="font-semibold text-neutral-200">WorthWyl Cognitive Substrate</span>
-            <span>&bull; Microsoft Azure Ready &bull; Tier 3 Substrate Roadmap</span>
-          </div>
-
-          <div className="flex items-center gap-4 text-neutral-400">
-            <button
-              onClick={() => navigateToView('diligence')}
-              className="hover:text-amber-400 transition underline font-mono text-[11px]"
-            >
-              Export Complete Package (.md)
-            </button>
-            <span className="text-neutral-500 font-mono text-[11px]">
-              CANON LOCKED &bull; 2026
-            </span>
-          </div>
-        </div>
-      </footer>
-
-      {/* Universal Floating AI Interaction Bar */}
-      <GlobalAiBar
-        activeView={activeView}
-        onNavigate={(v) => setActiveView(v)}
-        metrics={metrics}
-        onAtomInjected={handleAtomInjected}
-        onTriggerWriteEpisode={() => navigateToView('studio')}
-      />
-    </div>
-  );
+export default function App(){
+ const [messages,setMessages]=useState<ChatMessage[]>([{role:'assistant',content:intro+"\n\nStart anywhere. Tell me what happened, what you were thinking, a decision you made, or something you've been noticing about yourself."}]);
+ const [input,setInput]=useState(''); const [tab,setTab]=useState<'chat'|'map'|'tracker'>('chat');
+ const [obs,setObs]=useState<Observation[]>(loadObservations); const [patterns,setPatterns]=useState<Pattern[]>(loadPatterns); const [adapting,setAdapting]=useState(false); const [observeMode,setObserveMode]=useState(false); const [busy,setBusy]=useState(false);
+ const visiblePatterns=useMemo(()=>patterns.length?patterns:derivePatterns(obs),[patterns,obs]);
+ const send=async()=>{const text=input.trim(); if(!text||busy)return; setInput(''); const next=[...messages,{role:'user' as const,content:text}]; setMessages(next); const o=extractObservation(text); const nextObs=[o,...obs]; setObs(nextObs); saveObservations(nextObs); const derived=derivePatterns(nextObs); setPatterns(derived); savePatterns(derived); setBusy(true); try{const r=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,history:messages})}); const data=await r.json(); setMessages(m=>[...m,{role:'assistant',content:data.reply||data.error||'I could not respond.'}]);}finally{setBusy(false);}};
+ const confirmPattern=(p:Pattern,status:Pattern['status'])=>{const updated=patterns.map(x=>x.id===p.id?{...x,status}:x);setPatterns(updated);savePatterns(updated)};
+ return <div className="min-h-screen text-slate-100"><header className="sticky top-0 z-20 border-b border-white/10 bg-[#080b11]/90 backdrop-blur"><div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3"><div className="flex items-center gap-3"><div className="rounded-xl border border-cyan-300/30 bg-cyan-300/10 p-2"><Brain size={20}/></div><div><div className="font-semibold tracking-tight">CONVERTIBLE CRANIUM OPERATOR OS</div><div className="text-[10px] uppercase tracking-[.22em] text-slate-500">observe · question · map · understand</div></div></div><button onClick={()=>setAdapting(v=>!v)} className={`rounded-full border px-3 py-1.5 text-xs ${adapting?'border-cyan-300/50 bg-cyan-300/10 text-cyan-200':'border-white/10 text-slate-400'}`}>Cognitive adaptation {adapting?'ON':'OFF'}</button></div></header>
+ <main className="mx-auto grid max-w-6xl gap-4 p-4 lg:grid-cols-[1fr_320px]">
+ <section className="overflow-hidden rounded-3xl border border-white/10 bg-white/[.035] shadow-2xl"><div className="flex items-center gap-2 border-b border-white/10 p-2">{[['chat','Talk to Convertible Cranium AI'],['map','Cognitive Map'],['tracker','Tracker']] .map(([id,label])=><button key={id} onClick={()=>setTab(id as any)} className={`rounded-xl px-4 py-2 text-sm ${tab===id?'bg-white/10 text-white':'text-slate-500'}`}>{label}</button>)}</div>
+ {tab==='chat'&&<><div className="h-[60vh] overflow-y-auto p-5 space-y-4">{messages.map((m,i)=><div key={i} className={`flex ${m.role==='user'?'justify-end':''}`}><div className={`max-w-[85%] whitespace-pre-wrap rounded-2xl px-4 py-3 text-sm leading-6 ${m.role==='user'?'bg-cyan-300/10 border border-cyan-300/20':'bg-black/20 border border-white/10'}`}>{m.content}</div></div>)}{busy&&<div className="text-sm text-slate-500">Convertible Cranium AI is thinking...</div>}</div><div className="border-t border-white/10 p-3"><div className="mb-2 flex items-center gap-2 text-xs text-slate-500"><button onClick={()=>setObserveMode(v=>!v)} className={`flex items-center gap-1 rounded-full border px-2.5 py-1 ${observeMode?'border-cyan-300/40 text-cyan-200':'border-white/10'}`}><Eye size={13}/> {observeMode?'Observation mode on':'Ask Convertible Cranium AI to observe'}</button><span>Nothing is silently recorded from other apps in this build.</span></div><div className="flex gap-2"><textarea value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}}} placeholder="Tell Cranium what happened, what you thought, or what you're trying to understand..." className="min-h-14 flex-1 resize-none rounded-2xl border border-white/10 bg-black/20 p-3 outline-none focus:border-cyan-300/40"/><button onClick={send} className="rounded-2xl bg-cyan-300 px-5 font-semibold text-slate-950"><ChevronRight/></button></div></div></>}
+ {tab==='map'&&<MapView patterns={visiblePatterns} observations={obs} onConfirm={confirmPattern}/>} {tab==='tracker'&&<Tracker observations={obs} onAdd={(o)=>{const n=[o,...obs];setObs(n);saveObservations(n);const p=derivePatterns(n);setPatterns(p);savePatterns(p)}}/>}
+ </section>
+ <aside className="space-y-3"><Card icon={<Sparkles size={17}/>} title="What this is">A living, user-governed map of observed cognitive patterns. It is not a personality score.</Card><Card icon={<CircleHelp size={17}/>} title="Psychology layer">Convertible Cranium AI can explain general psychological and psychoanalytic concepts, then compare them with patterns you report. Similarity is not diagnosis.</Card><Card icon={<ShieldCheck size={17}/>} title="Authority boundary">Observations and hypotheses are not canonical authority. The production version should route durable state through Convertible Cranium's governed memory and Kernel.</Card><Card icon={<GitBranch size={17}/>} title="Adaptation">{adapting?'Convertible Cranium AI is configured to adapt communication to the patterns you have allowed it to learn.':'Standard Convertible Cranium AI personality is active. Adaptation remains off until you choose it.'}</Card></aside>
+ </main></div>
 }
+function Card({icon,title,children}:{icon:React.ReactNode;title:string;children:React.ReactNode}){return <div className="rounded-2xl border border-white/10 bg-white/[.025] p-4"><div className="mb-2 flex items-center gap-2 text-sm font-semibold">{icon}{title}</div><div className="text-xs leading-5 text-slate-500">{children}</div></div>}
+function MapView({patterns,observations,onConfirm}:{patterns:Pattern[];observations:Observation[];onConfirm:(p:Pattern,s:Pattern['status'])=>void}){return <div className="p-5"><div className="mb-4"><div className="text-lg font-semibold">Your cognitive map</div><div className="text-sm text-slate-500">Patterns remain hypotheses until you review them.</div></div><div className="map-grid min-h-[58vh] rounded-3xl border border-white/10 p-6"><div className="flex min-h-[50vh] flex-col items-center justify-center gap-5"><div className="rounded-full border border-cyan-300/40 bg-cyan-300/10 px-5 py-3 text-sm">YOU · evolving cognitive map</div>{patterns.length===0?<div className="max-w-md text-center text-sm text-slate-500">Add a few observations through conversation or the tracker. Repeated themes will begin appearing here.</div>:<div className="grid w-full max-w-3xl gap-3 sm:grid-cols-2">{patterns.map(p=><div key={p.id} className="rounded-2xl border border-white/10 bg-[#0b0f17]/90 p-4"><div className="flex items-center justify-between"><span className="font-medium">{p.label}</span><span className="text-xs text-cyan-200">{Math.round(p.confidence*100)}%</span></div><p className="mt-2 text-xs leading-5 text-slate-500">{p.description}</p><div className="mt-2 text-[11px] text-slate-600">Evidence: {p.evidenceIds.length} observations</div>{p.status==='hypothesis'&&<div className="mt-3 flex gap-2"><button onClick={()=>onConfirm(p,'user_confirmed')} className="rounded-lg bg-white/10 px-2 py-1 text-xs">Confirm</button><button onClick={()=>onConfirm(p,'user_rejected')} className="rounded-lg bg-white/5 px-2 py-1 text-xs text-slate-500">Reject</button></div>}</div>)}</div>}{observations.length>0&&<div className="text-xs text-slate-600">{observations.length} observations informing this map.</div>}</div></div></div>}
+function Tracker({observations,onAdd}:{observations:Observation[];onAdd:(o:Observation)=>void}){const [text,setText]=useState('');return <div className="p-5"><div className="mb-4"><div className="text-lg font-semibold">Metacognitive Tracker</div><div className="text-sm text-slate-500">A simple place to record what you noticed. Cranium can turn these observations into map candidates.</div></div><textarea value={text} onChange={e=>setText(e.target.value)} placeholder="What happened? What were you thinking, feeling, deciding, avoiding, researching, or reconsidering?" className="min-h-40 w-full rounded-2xl border border-white/10 bg-black/20 p-4 outline-none"/><button disabled={!text.trim()} onClick={()=>{onAdd(extractObservation(text));setText('')}} className="mt-3 flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-sm font-semibold text-slate-950 disabled:opacity-30"><Plus size={16}/> Log observation</button><div className="mt-6 space-y-2">{observations.slice(0,12).map(o=><div key={o.id} className="rounded-xl border border-white/10 p-3"><div className="text-xs text-slate-600">{new Date(o.createdAt).toLocaleString()}</div><div className="mt-1 text-sm">{o.text}</div>{o.tags.length>0&&<div className="mt-2 flex flex-wrap gap-1">{o.tags.map(t=><span key={t} className="rounded-full bg-white/5 px-2 py-0.5 text-[10px] text-slate-500">{t}</span>)}</div>}</div>)}</div></div>}

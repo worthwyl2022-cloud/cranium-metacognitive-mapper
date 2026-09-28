@@ -10,7 +10,7 @@
 
 WorthWyl Creative OS is a **directive-governed cognitive operating system** for creators, writers, audio storytellers, and media producers. Unlike traditional creative utilities (DAWs, word processors, or basic prompt wrappers) that operate without psychological, emotional, or canonical awareness, WorthWyl Creative OS unifies four foundational subsystems into an orchestrated constellation:
 
-1. **Cranium Core**: Real-time cognitive physics substrate (valence charge, mass, velocity, continuity, coherence, theme drift, and four automated governor directives: `STABILIZE`, `ESCALATE`, `SHIFT_THEME`, `ADVANCE`).
+1. **Convertible Cranium Core**: Real-time cognitive physics substrate (valence charge, mass, velocity, continuity, coherence, theme drift, and four automated governor directives: `STABILIZE`, `ESCALATE`, `SHIFT_THEME`, `ADVANCE`).
 2. **Creator Studio**: Command center featuring a multi-track audio/video timeline, narrative beat editor, inline cognitive steering feedback, and production presets.
 3. **Media Engine**: GPU-accelerated MP4 assembly, chunked speech synthesis, auto-mixing engine, and resumable worker jobs.
 4. **Miracle Archive**: Generational legacy repository with AES-256 double envelope encryption, time-capsule date locks, and cryptographically signed heirloom manifests.
@@ -19,11 +19,11 @@ WorthWyl Creative OS is a **directive-governed cognitive operating system** for 
 
 ## 2. Complete Python Substrate Reference Implementation
 
-Below is the verified, mathematically calibrated Python substrate implementation matching the Cranium Core specification.
+Below is the verified, mathematically calibrated Python substrate implementation matching the Convertible Cranium Core specification.
 
 ```python
 """
-WorthWyl Creative OS / Cranium Core — Complete Corrected Substrate Stack
+WorthWyl Creative OS / Convertible Cranium Core — Complete Corrected Substrate Stack
 Behavioral contract: intention -> identity -> memory permanence -> conflict as signal -> directive-driven next move
 """
 
@@ -419,7 +419,7 @@ metadata:
   name: worthwyl-platform
 ```
 
-### 3.2 Cranium Core API Deployment (AKS)
+### 3.2 Convertible Cranium Core API Deployment (AKS)
 
 ```yaml
 apiVersion: apps/v1

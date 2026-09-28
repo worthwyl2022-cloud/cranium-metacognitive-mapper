@@ -5,7 +5,7 @@ export interface CognitiveAtom {
   mass: number; // importance/weight (0.0 to 20.0)
   velocity: number; // change rate (0.0 to 1.0)
   tags: Set<string> | string[]; // semantic / thematic tags
-  kind: 'theme' | 'episodic';
+  kind: 'theme' | 'episodic' | 'character' | 'world';
   content?: string;
   timestamp?: number;
 }

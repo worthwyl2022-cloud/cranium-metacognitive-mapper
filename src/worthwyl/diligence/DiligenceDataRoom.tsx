@@ -7,7 +7,7 @@ import {
 export default function DiligenceDataRoom() {
   const [copied, setCopied] = useState(false);
 
-  const fullMarkdownContent = `# Cranium Core & WorthWyl Creative OS — Acquisition One-Pager & Diligence Manual
+  const fullMarkdownContent = `# Convertible Cranium Core & WorthWyl Creative OS — Acquisition One-Pager & Diligence Manual
 
 **Asset Class:** Pre-revenue creative-governance prototype (IP + architecture + working substrate)  
 **Not:** A revenue-generating SaaS, a proven continuity product, or a validated benchmark leader  
@@ -17,7 +17,7 @@ export default function DiligenceDataRoom() {
 
 ## 1. Executive Summary & Honest Buyer Diligence
 
-Cranium Core is a **directive-governed cognitive substrate** for long-running creative and strategic work. It treats identity, constitutional canon, and human intent as first-class constraints—not chat history to be diluted.
+Convertible Cranium Core is a **directive-governed cognitive substrate** for long-running creative and strategic work. It treats identity, constitutional canon, and human intent as first-class constraints—not chat history to be diluted.
 
 ### Reality Diligence Check (What it is NOT yet):
 | Claim | Reality |
@@ -107,7 +107,7 @@ Cranium Core is a **directive-governed cognitive substrate** for long-running cr
             </span>
             <span className="text-xs text-neutral-400 font-mono">MICROSOFT / ACQUISITION READY</span>
           </div>
-          <h2 className="text-2xl font-bold text-white tracking-tight">Cranium Core Acquisition Dossier</h2>
+          <h2 className="text-2xl font-bold text-white tracking-tight">Convertible Cranium Core Acquisition Dossier</h2>
           <p className="text-xs md:text-sm text-neutral-400 mt-0.5">
             Honest diligence review, invariant verification, behavioral contract specifications, and Microsoft Azure cloud topology.
           </p>

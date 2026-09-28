@@ -97,7 +97,7 @@ export default function AcquisitionVideoDemo({ onNavigateToModule }: Props) {
             <span className="text-xs text-neutral-400 font-mono">CONFIDENTIAL // WORTHWYL COGNITIVE CORE</span>
           </div>
           <h2 className="text-2xl font-bold text-white tracking-tight">
-            Cranium Core & Creative OS Showcase
+            Convertible Cranium Core & Creative OS Showcase
           </h2>
           <p className="text-xs md:text-sm text-neutral-400 mt-0.5">
             An interactive executive walkthrough demonstrating the behavioral contract, cognitive physics, episodic narrative coherence, and metacognitive tracking.
@@ -157,7 +157,7 @@ export default function AcquisitionVideoDemo({ onNavigateToModule }: Props) {
                     FOUNDATIONAL MOAT
                   </div>
                   <h3 className="text-3xl font-bold text-white tracking-tight leading-snug">
-                    Why Generative AI Fails Creative Long-Form & How Cranium Core Solves It.
+                    Why Generative AI Fails Creative Long-Form & How Convertible Cranium Core Solves It.
                   </h3>
                   <p className="text-sm text-neutral-300 leading-relaxed">
                     Most creative platforms operate as superficial wrappers over generative models. Over serialized narrative, character relationships disintegrate, emotional intensity flatlines, and canon suffers from catastrophic regression.
@@ -180,7 +180,7 @@ export default function AcquisitionVideoDemo({ onNavigateToModule }: Props) {
                   </div>
                   <div className="p-3.5 rounded-xl bg-emerald-950/20 border border-emerald-900/40 space-y-1">
                     <span className="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
-                      <CheckCircle2 className="w-3.5 h-3.5" /> WorthWyl Cranium Core Substrate
+                      <CheckCircle2 className="w-3.5 h-3.5" /> WorthWyl Convertible Cranium Core Substrate
                     </span>
                     <p className="text-xs text-neutral-300">Resonance field physics with immutable constitutional canon, velocity dampening, and directive-governed next steps.</p>
                   </div>

@@ -111,7 +111,7 @@ export class EpisodicMemoryStore {
       title: data.title.trim(),
       genre: data.genre.trim(),
       status: "in_progress",
-      logline: data.logline?.trim() || "A new speculative narrative crafted under Cranium Core continuity.",
+      logline: data.logline?.trim() || "A new speculative narrative crafted under Convertible Cranium Core continuity.",
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };

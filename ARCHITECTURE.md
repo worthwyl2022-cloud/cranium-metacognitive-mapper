@@ -2,26 +2,36 @@
 
 ## Repository role
 
-**Product, integration, or supporting component repository.**
-
-This document records engineering evidence for technical diligence. It does not establish legal ownership, inventorship, assignment, trademark rights, or third-party license compliance.
+**First-class Cranium Command OS product surface; standalone-capable distribution.** The Mapper is a cognitive-mapping application within the Cranium ecosystem, not a competing authority implementation.
 
 ## System boundary
 
-Describe what this repository owns and what it consumes from other repositories, services, runtimes, registries, or external providers. Identify whether this repository is canonical, supporting, demonstrative, or historical.
+The Mapper owns the conversational cognitive-mapping experience, observation capture, pattern visualization, user review of hypotheses, and adaptation preferences. It consumes cognition/model capability through Convertible Cranium AI/Synapse and, in production, governed continuity through Miracle Memory and authorization through Cranium Kernel.
 
-## Core concepts and invariants
+## Core invariant
 
-Record the concepts that must remain stable for the architecture to retain its intended behavior. State the authority, identity, state-transition, governance, safety, and compatibility rules that are enforced by code or tests. Do not describe an invariant as enforced unless a code path or test demonstrates it.
+**The Mapper can propose cognitive interpretations. It cannot make those interpretations authoritative.** Canonical authority remains with `cranium-kernel`.
 
-## Data and control flow
+## Cognitive loop
 
-Document the primary inputs, transformations, state transitions, outputs, and failure paths. Link to the implementation and tests that demonstrate each critical path.
+`observe -> structure -> interpret -> explain -> question -> user responds -> challenge/reconsider -> update map`
 
-## Extension points
+The UI and data model distinguish observed information, interpretations, hypotheses, user-confirmed patterns, and rejected patterns.
 
-Record supported interfaces, adapters, providers, schemas, contracts, and configuration points. Distinguish stable interfaces from experimental or internal ones.
+## Current prototype evidence
+
+The current build implements conversational capture, deterministic observation tagging, repeated-theme hypothesis generation, user confirmation/rejection, a cognitive map view, a tracker, an explicit observation-mode control, and optional Gemini-backed conversation. Browser localStorage is used for prototype persistence.
+
+## Production boundary
+
+Prototype local state is not canonical memory. Production state must route through governed Cranium memory and Command interfaces, preserve provenance, enforce capability boundaries, and use the canonical Kernel for authority-bearing transitions.
+
+## Safety boundary
+
+Psychological and psychoanalytic explanations are educational. Generated interpretations are not clinical diagnoses and must remain challengeable hypotheses. Cross-application observation requires explicit authorization and must never be represented as silently active when it is not actually connected.
+
+See `COMMAND_OS_INTEGRATION.md` for the complete integration contract.
 
 ## Canonicality decision
 
-Canonical status: **Supporting surface; cranium-kernel is the sole canonical authority source**. This repository must not define a competing authority implementation.
+Canonical status: **Cranium Command OS product surface; `cranium-kernel` remains the sole canonical authority source.**

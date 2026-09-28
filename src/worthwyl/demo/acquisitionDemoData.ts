@@ -19,16 +19,16 @@ export const DEMO_CHAPTERS: DemoChapter[] = [
     act: "Act I",
     title: "The Creative Bottleneck & The Behavioral Contract",
     durationSec: 18,
-    narratorVoiceText: "Welcome to WorthWyl Creative OS. Today's creative tools treat artificial intelligence as a disposable chat generator. In long-running projects, models drift, character arcs collapse, and creative intent is diluted. WorthWyl introduces Cranium Core, the world's first directive-governed cognitive substrate that treats canon, identity, and intent as first-class constraints.",
+    narratorVoiceText: "Welcome to WorthWyl Creative OS. Today's creative tools treat artificial intelligence as a disposable chat generator. In long-running projects, models drift, character arcs collapse, and creative intent is diluted. WorthWyl introduces Convertible Cranium Core, the world's first directive-governed cognitive substrate that treats canon, identity, and intent as first-class constraints.",
     captions: [
       "Current generative tools suffer from canon amnesia and narrative drift.",
-      "Cranium Core establishes an immutable behavioral contract between author and machine.",
+      "Convertible Cranium Core establishes an immutable behavioral contract between author and machine.",
       "Intent, canon, and emotional logic are enforced as first-class physical constraints."
     ],
     keyHighlights: [
       { metric: "100%", label: "Constraint Guarantee", description: "Identity and canon cannot be overridden by conversational drift." },
       { metric: "0.90", label: "Coherence Floor", description: "Calibrated threshold enforcing strict multi-episode integrity." },
-      { metric: "4 Core", label: "Subsystem Pillars", description: "Cranium Core, Media Engine, Studio, and Miracle Archive." }
+      { metric: "4 Core", label: "Subsystem Pillars", description: "Convertible Cranium Core, Media Engine, Studio, and Miracle Archive." }
     ],
     visualMode: "summary"
   },
@@ -37,7 +37,7 @@ export const DEMO_CHAPTERS: DemoChapter[] = [
     act: "Act II",
     title: "Resonance Field Physics & Automated Directives",
     durationSec: 22,
-    narratorVoiceText: "Observe the Resonance Field in action. Narrative events are not stored as plain text strings—they are modeled as Cognitive Atoms, with emotional charge, mass, and velocity. The engine computes real-time tension, coherence, and theme drift. When tension drops below threshold, Cranium Core issues an automated ESCALATE directive. When coherence fractures, it issues STABILIZE.",
+    narratorVoiceText: "Observe the Resonance Field in action. Narrative events are not stored as plain text strings—they are modeled as Cognitive Atoms, with emotional charge, mass, and velocity. The engine computes real-time tension, coherence, and theme drift. When tension drops below threshold, Convertible Cranium Core issues an automated ESCALATE directive. When coherence fractures, it issues STABILIZE.",
     captions: [
       "Cognitive Atoms model narrative energy: charge (-1.0 to 1.0), mass, and velocity.",
       "The physics engine evaluates collisions between opposite emotional polarities.",

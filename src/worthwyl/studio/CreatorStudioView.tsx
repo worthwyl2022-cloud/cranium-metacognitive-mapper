@@ -58,7 +58,7 @@ export default function CreatorStudioView({ field, metrics, onAtomInjected, onNa
   const [assistantMessages, setAssistantMessages] = useState<Array<{ role: 'user' | 'assistant'; text: string; directiveSuggestion?: string }>>([
     {
       role: 'assistant',
-      text: "Cranium Core Novel Engine ready. Episodic memory and visual-text continuity lattice active. You can request canon audits, explore next beats, or set narrative constraints."
+      text: "Convertible Cranium Core Novel Engine ready. Episodic memory and visual-text continuity lattice active. You can request canon audits, explore next beats, or set narrative constraints."
     }
   ]);
   const [assistantInput, setAssistantInput] = useState('');
@@ -201,7 +201,7 @@ export default function CreatorStudioView({ field, metrics, onAtomInjected, onNa
       snapshots,
       continuity,
       exportedAt: new Date().toISOString(),
-      substrate: "Cranium Core v3"
+      substrate: "Convertible Cranium Core v3"
     };
     const blob = new Blob([JSON.stringify(manifest, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);

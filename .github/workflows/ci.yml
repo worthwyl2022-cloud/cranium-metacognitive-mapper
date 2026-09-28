@@ -1,4 +1,4 @@
-name: Cranium Core OS CI
+name: Convertible Cranium Core OS CI
 
 on:
   push:

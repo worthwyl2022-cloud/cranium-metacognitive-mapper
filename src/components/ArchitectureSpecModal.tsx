@@ -77,7 +77,7 @@ export default function ArchitectureSpecModal({ isOpen, onClose }: Props) {
                 <div className="p-4 rounded-xl border border-neutral-200 bg-neutral-50/50 space-y-2">
                   <div className="flex items-center gap-2 text-xs font-bold text-neutral-900">
                     <Cpu className="w-4 h-4 text-blue-600" />
-                    1. Cranium Core Supercluster
+                    1. Convertible Cranium Core Supercluster
                   </div>
                   <p className="text-xs text-neutral-600 leading-relaxed">
                     ML serving layer (vLLM / KServe) evaluating real-time emotional baseline, tension, coherence, continuity, and theme drift. Latency benchmark &lt; 150ms.
