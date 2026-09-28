@@ -1,4 +1,4 @@
-name: Deploy Cranium OS
+name: Deploy Convertible Cranium Operator OS
 
 on:
   push:
